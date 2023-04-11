@@ -153,8 +153,7 @@ $(function(){
 
 // 로그인을 빈칸으로 제출하는 것을 방지
 	@RequestMapping("signin_check")
-	public ModelAndView signin_check(UserDto userDto, HttpSession session, 
-				ModelAndView mv) {
+	public ModelAndView signin_check(UserDto userDto, HttpSession session, ModelAndView mv) {
 		String str = userService.login(userDto);   //str : 유저닉네임(email, pw 일치 시 존재)
 		if(str != null) {                          //로그인 성공(세션에 로그인 정보 추가)
 			session.setAttribute("user_id", userDto.getId());
@@ -185,8 +184,7 @@ import java.util.Date;
 
 public class UserDto {
 	private int user_id, paid_m; //결제 누적 수 paid_m 추가 
-	private String id, email, password, nickname, phone_num, subscribe_yn, 
-									delete_yn, img; // 유저 프로필 가져오기 위해 img 추가 
+	private String id, email, password, nickname, phone_num, subscribe_yn, delete_yn, img; // 유저 프로필 가져오기 위해 img 추가 
 	private String create_type; //apiLogin때문에 추가
 	private String chatId; // chat기능
 	private Date create_date, expiration_date, delete_date; //관리자 페이지 추가 
@@ -312,14 +310,14 @@ public class UserDto {
 	@Override
 	public String toString() {
 		return "UserDto : [id=" + id 
-						+ ", email=" + email 
-						+ ", passwd="+ password 
-						+ ", nickname=" + nickname 
-						+ ", phone_num=" + phone_num 
-						+", create_type=" + create_type 
-						+ ", paid_m=" + paid_m 
-						+ ", img=" + img 
-						+ "]";
+			+ ", email=" + email 
+			+ ", passwd="+ password 
+			+ ", nickname=" + nickname 
+			+ ", phone_num=" + phone_num 
+			+ ", create_type=" + create_type 
+			+ ", paid_m=" + paid_m 
+			+ ", img=" + img 
+			+ "]";
 	}
 
 }
@@ -1593,19 +1591,19 @@ public class VideoDto {
 	
 	@Override
 	public String toString() {
-	return "VideoDto [title = " + title
-		+ ", video_url = " + video_url
-		+ ", image_url = " + image_url
-		+ ", summary = " + summary
-		+ ", country = " + create_country
-		+ ", grade = " + grade
-		+ ", actor = " + actor
-		+ ", genre_id = " + genre_id
-		+ ", video_id = " + video_id
-		+ ", create_year = " + create_year
-		+ ", recommand = " + recommand
-		+ ", category_id = " + category_id 
-		+ "]";
+		return "VideoDto [title = " + title
+			+ ", video_url = " + video_url
+			+ ", image_url = " + image_url
+			+ ", summary = " + summary
+			+ ", country = " + create_country
+			+ ", grade = " + grade
+			+ ", actor = " + actor
+			+ ", genre_id = " + genre_id
+			+ ", video_id = " + video_id
+			+ ", create_year = " + create_year
+			+ ", recommand = " + recommand
+			+ ", category_id = " + category_id 
+			+ "]";
 	}
 	
 }
@@ -2341,12 +2339,12 @@ public class ImgDto {
 
 	@Override
 	public String toString() {
-	return "ImagDto [uploadPath=" + uploadPath 
-		+ ", uuid=" + uuid 
-		+ ", fileName=" + fileName 
-		+ ", saveFilestr=" + saveFilestr 
-		+ ", id=" + id 
-		+"]";
+		return "ImagDto [uploadPath=" + uploadPath 
+			+ ", uuid=" + uuid 
+			+ ", fileName=" + fileName 
+			+ ", saveFilestr=" + saveFilestr 
+			+ ", id=" + id 
+			+"]";
 	}
 }
   
