@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="alarm">
+	
+	<select id="alarmSelect" resultType="int">
+		select count(*)
+		  from ALARM
+		 where USER_ID = (select USER_ID from USER where ID=#{id})
+	</select>
+	
+	<select id="checkUser" resultType="String">
+		select USER_ID
+		  from USER
+		 where ID=#{id}
+	</select>
+	
+	<insert id="addQna">
+		insert into ALARM (USER_ID, CODE, PREFIX)
+		values ((select USER_ID from USER where ID=#{id}), "NewPost", "QNA게시판")
+	</insert>
+	
+	<select id="select" resultType="com.test.test1.alarm.dto.AlarmDto">
+		select IDX, CODE, PREFIX
+		  from ALARM
+		 where USER_ID = (select USER_ID from USER where ID=#{hsid})
+		   and CHECKED = "X";
+	</select>
+	
+	<delete id="delete">
+		delete from ALARM
+		 where IDX=#{idx}
+	</delete>
+	
+	<insert id="addComment">
+		insert into ALARM (USER_ID, CODE, PREFIX)
+		values ((select USER_ID from VIDEO_COMMENT where PID=#{pid} and DEPTH=0), "NewComment", (select TITLE from VIDEO where VIDEO_ID=#{video_id}))
+	</insert>
+</mapper>

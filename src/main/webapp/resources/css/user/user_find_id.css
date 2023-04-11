@@ -1,0 +1,277 @@
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+   }
+
+/* 기본 설정 -> 변수로 사용 */ 
+:root{
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+    --title-border: 600px;
+  
+}
+
+/* 전체 적용 - 기본 margin/padding제외, 박스 사이즈 조정(테두리 기준 크기 설정), 글씨체, 글씨 컬러, 링크밑줄 제거  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'NanumBarunGothic'; 
+    color: var(--main-text-color);
+    text-decoration: none;
+}
+
+/* 전체 배경색 */ 
+body{
+    background-color: var(--bg);
+}
+
+/*header area*/
+/* 헤더 영역 설정 */ 
+header {
+    width: 100%;
+    height: 10vh;
+}
+
+/* logo크기 조정 */ 
+.header_logo img{
+    width: 20rem;
+    height: 9rem;
+    cursor: pointer;
+}
+/*header area end*/
+
+/*section area*/
+/* 섹션 영역 설정, 로그인창 가운데 정렬 */ 
+section {
+    width: 100%;
+    height: 100vh;
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+}
+
+/*로그인창 크기 설정*/
+.section_loginform {
+    width: 500px;
+    height: 820px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 60px 60px;
+    padding: 5vh 5vh 5vw 5vh;
+    display: grid;
+}
+
+/*로그인 글씨 위치 조정 */
+.login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2vh; 
+    font-size: var(--large-text-size);
+}
+
+/* 입력창 사이 높이 조정 */
+.input_text {
+    height: 60px;
+    font-size: var(--medium-text-size);
+}
+
+/* 입력창 크기, 컬러 조정 */
+.input_size {
+    width: 380px;
+    height: 50px;
+    font-size: var(--medium-text-size);
+    padding: 0 0 0 20px;
+    background-color: rgb(25, 26, 30); /* 입력창 컬러 */
+    border: none;
+    border-radius:  10px;
+}
+
+/* 입력하기 전에 띄울 글씨 컬러 */
+.input_size::placeholder {
+    color: rgb(90, 90, 90);/* 입력창 입력전 글씨 컬러 */
+}
+
+/* 입력창 포커스효과 부여 */
+.input_size:focus{
+    outline: none;
+    background-color:rgb(42, 43, 49); /* 입력창 포커스 컬러 */
+}
+
+/*이메일 체크 버튼*/
+.email_checkbtn{
+    background-color:var(--btn_bg); /*버튼 컬러*/
+    font-size : var(--medium-text-size);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    width: 100px;
+    margin-bottom: 1vh;
+}
+
+/* 로그인 입력 상태 메세지 */
+.formSpans {
+    display: inline-block;
+    color: var(--main-text-color);
+    font-size:var(--small-text-size);
+}
+
+/*0209 - 인증번호 입력창 css추가*/
+.authorkey{
+    width: 200px;
+    height: 40px;
+    background-color: rgb(25, 26, 30);
+    border: none;
+    border-radius:  10px;
+    padding: 0 0 0 20px;
+}
+
+/*0209 - 인증번호 입력창 focus 효과 추가*/
+.authorkey:focus{
+    outline: none;
+    background-color:rgb(42, 43, 49);
+}
+
+/* 아이디찾기 버튼 크기, 컬러 조정  */
+.login_submit_id {
+    width: 380px;
+    height: 50px;
+    background-color:var(--btn_bg);
+    border-radius: 10px;
+    font-size: var(--medium-text-size);
+    border: none;
+    cursor: pointer;
+    margin: 2vh 0 0 0;
+}
+
+/* 로그인 버튼 hover효과 컬러  */
+.login_submit_id:hover {
+    background-color:var(--btn_hover_bg);
+    border:0.5px solid red;;
+}
+
+/* 아이디찾기 버튼 크기, 컬러 조정  */
+.login_submit_pw {
+    width: 380px;
+    height: 50px;
+    background-color:var(--btn_bg);
+    border-radius: 10px;
+    font-size: var(--medium-text-size);
+    border: none;
+    cursor: pointer;
+    margin: 2vh 0 0 0;
+}
+
+/* 로그인 버튼 hover효과 컬러  */
+.login_submit_pw:hover {
+    background-color:var(--btn_hover_bg);
+    border:0.5px solid red;;
+}
+
+/* 구분선 / 다른방법으로 로그인 글씨 컬러 */
+.division_line{
+    width: 380px;
+    height: 50px;
+	border-top: 2px solid  rgb(90, 90, 90);
+    margin-top: 1vh;
+}
+
+/*0209 - 인증번호 확인 버튼 css추가 */
+.key_submit{
+    width: 50px;
+    height: 30px;
+    background-color:var(--btn_bg);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* 0209 - 비밀번호 찾기 버튼 상태 추가 */
+#submit_pw_text{
+	color:var(--error-text-color);
+}
+
+#submit_id_text{
+	color:var(--error-text-color);
+}
+
+/* 02.11 - 팝업창 추가 */
+/* 팝업창 배경*/
+.popup{
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 10000; /*팝업창처럼 뜨게 제일 최상위로 올려놓음*/
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /*상태창*/
+}
+
+/* 팝업창 메인*/
+.pwrap{
+    width: 450px;
+    height: 370px;
+    margin: 0 auto;
+    position: absolute; /* 영역안에 기능들이 보일수 있도록 하는 것 */
+    left: 0;
+    right: 0;
+    top: 150px;  
+    background-color: var(--bg);
+    color: var(--main-text-color);
+    padding: 20px;
+    box-sizing: border-box; /* 텍스트들이 지정해놓은 영역안에 담기기 위함*/
+    border-radius: 10px;
+}
+
+/* 닫기 버튼 */
+.pwrap a{
+	float: right;
+	cursor: pointer;
+}
+
+/* 비밀번호 변경 텍스트 */
+.pwrap h2{    
+    margin-bottom: 10px;
+}
+
+/* 비밀번호 입력창  */
+.pw_input_text {
+    height: 80px;
+    font-size: var(--medium-text-size);
+    position : relative;
+}
+
+/* 비밀번호 변경 버튼 */
+.pwrap button{
+    width: 50px;
+    height: 30px;
+    background-color:var(--btn_bg);
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+#input_regex{
+	margin-top : 5px;
+	margin-left: 5px;
+}
+
+.fa-solid{
+	position : absolute;
+	left : 340px;
+	top: 17px;
+}
+
+/*section area end*/
+

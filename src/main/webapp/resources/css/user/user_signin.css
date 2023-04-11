@@ -1,0 +1,190 @@
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+   }
+
+:root{
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'NanumBarunGothic'; 
+    color: var(--main-text-color);
+    text-decoration: none;
+}
+
+body{
+    background-color: var(--bg);
+}
+
+/* 네비바영역 추가 _ 02/27 김지혜 네비바 수정  */ 
+header{
+	height: 5vh;
+}
+
+/*section area*/
+/* 섹션 영역 설정, 로그인창 가운데 정렬 */ 
+section {
+    width: 100%;
+    height: 100vh;
+    margin-top: 15vh;    /* 네비바 영역 설정에 영향을 주어 수정 _ 02/27 김지혜 */ 
+    display: flex;
+    justify-content: center;
+}
+
+/*로그인창 크기 설정*/
+.section_loginform {
+    width: 500px;
+    height: 700px;
+    background-color: rgba(0, 0, 0, 0.8); /*로그인창 배경색 지정*/
+    border-radius: 60px 60px;
+    padding: 5vh 5vh 5vw 5vh; /*안의 input영역에 대한 위치 조정값*/
+    display: grid;
+}
+
+/*로그인 글씨 위치 조정 */
+.login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/*로그인 글씨 사이즈 조정 */
+.login_text {
+    font-size: var(--large-text-size);
+}
+
+/* 입력창 사이 높이 조정 */
+.input_text {
+    height: 80px;
+    font-size: var(--medium-text-size);
+}
+
+/* 입력창 크기, 컬러 조정 */
+.input_size {
+    width: 380px;
+    height: 50px;
+    font-size: var(--text-size);
+    padding: 10px 0 10px 20px;
+    background-color: rgb(25, 26, 30); /* 입력창 컬러 */
+    border: none;
+    border-radius:  10px;
+}
+
+/* 입력하기 전에 띄울 글씨 컬러 */
+.input_size::placeholder {
+    color: rgb(90, 90, 90); /* 입력창 입력전 글씨 컬러 */
+}
+
+/* 입력창 포커스효과 부여 */
+.input_size:focus{
+    outline: none;
+    background-color:rgb(42, 43, 49); /* 입력창 포커스 컬러 */
+}
+
+/* 로그인 입력 상태 메세지 */
+.formSpans {
+    display: inline-block;
+    color: var(--main-text-color);
+    font-size:var(--small-text-size); /* 폰트사이즈 논의 예정 */
+    margin: 10px 0 10px 0px;
+}
+/* 로그인 버튼 크기, 컬러 조정  6930c3 663868*/
+/* 로그인 버튼 크기, 컬러 조정 #a100f2 #8900f2 */
+.login_submit {
+    width: 380px;
+    height: 50px;
+    background-color:var(--btn_bg); /* 로그인 버튼 컬러  */
+    border-radius: 10px;
+    font-size: var(--medium-text-size); /* 로그인 버튼 글씨 컬러  */
+    border: none;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+}
+
+/* 로그인 버튼 hover효과 컬러  */
+.login_submit:hover {
+    background-color:var(--btn_hover_bg); 
+    border:0.5px solid red;;
+}
+
+/* 로그인 에러 메세지  */
+.error_text{
+	padding-top: 1vh;
+	font-size:var(--small-text-size);
+	color:var(--error-text-color);
+}
+
+/* 구분선 / 다른방법으로 로그인 글씨 컬러 */
+.division_line{
+    width: 380px;
+    height: 50px;
+	border-top: 2px solid  rgb(90, 90, 90);
+    font-size: var(--medium-text-size);
+    margin-top: 3vh;
+}
+
+/* 이미지 영역 크기  */
+.image-div {
+	width:50%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:40px;
+    align-content: start;
+    margin-top: 1vh;
+}
+
+/* 이미지 크기조정   */
+.naverIcon img,
+.kakaoIcon img,
+.faceIcon img,
+.appleIcon img 
+{
+    width: 150%;
+    height: 150%;
+    cursor: pointer;
+}
+
+/* 회원가입 연결 문구   */
+.signup_text {
+    font-size: var(medium-text-size);
+}
+
+/* 회원가입 연결 버튼   */
+.signup{
+	width: 380px;
+    height: 50px;
+    background-color:var(--btn_bg);
+    border-radius: 10px;
+    font-size: var(--medium-text-size);
+    border: none;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+}
+
+/* 회원가입 연결 hover효과   */
+.signup:hover{
+    background-color:var(--btn_hover_bg);
+    border:0.5px solid red;;
+}
+
+/*section area end*/
+
+
+/*footer area*/
+/*footer area end*/

@@ -1,0 +1,240 @@
+/* 
+1. menu와 info 영역에 class명이 같은 부분들의 css 적용은 menu에서 일괄 적용함
+2. 메뉴의 drop down과 info의 drop down은 최하단 drop down 나눠놓은 영역에서 일괄처리
+(class로 겹치는 부분이 있기때문에 나눠놓으면 보기 더 불편할 것 같아서)
+*/
+
+/* video list 네비바  */
+:root {
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+    height: 100%;
+    width: 100%;
+    z-index : 1000;
+}
+
+/* 네비바 수정  02/27 김지혜  */
+/* 네비바 - 로고/다국어지원기능 들어감 */
+#navbar {
+    display: flex;
+    position: fixed;
+    height: 6rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    background-color:var(--bg);
+}
+
+  
+/* 스크롤 밑으로 내릴 때 적용할 배경색 */
+nav#navbar.scrolled {
+	 transition: all 2s; 
+     background-color: transparent;  
+	
+}
+
+
+/* 네비바 - 로고/다국어지원기능 들어감 */
+.logo img{
+	margin-bottom : -6vh;
+	margin-top : 5vh;
+    width: 20rem;
+    height: 8rem;
+    object-fit :cover;
+}
+
+ul li {
+    list-style: none;       /* 전체 ul, li 일괄 효과 적용 */
+    text-align: center;
+    line-height: 50px;
+    color: var(--main-text-color);
+    cursor: pointer;
+}
+
+.icons {
+    color: var(--main-text-color);       /* 전체아이콘(검색,내정보) 일괄 효과 적용 */
+    cursor: pointer;
+}
+
+.icons:hover {
+    color: #FFCC00;
+}
+
+/* logo start */
+
+#logo {
+    color: var(--logo-color);
+    font-size: var(--logo-size);
+    margin-left: 0.5rem;
+    margin-top: -0.6rem;
+    cursor: pointer;
+}
+
+/* logo end */
+
+/* menu start */
+
+.menu {
+    margin-left: 2rem;
+    margin-right: auto;
+}
+
+.menu_ul{
+    display: flex;
+    justify-content: center;
+}
+
+.menu_text_li {
+    display: inline;
+    margin-right: 3rem;
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+}
+
+.menu_text_li > p:hover {
+    color:var(--btn_hover_bg);
+}
+
+.drop_menu_ul {
+    font-size: var(--medium-text-size);
+    position: absolute;
+    z-index: 1;   
+}
+
+.drop_menu_ul > li {
+    background-color: var(--bg);
+    width: 100px;     
+}
+
+/*   드롭다운 영역조정 */
+.drop_menu_ul_1>li{
+  position:relative;
+  transform: translateX(-30px);
+  top:0.7vh;    
+}
+
+
+
+#menu1 > ul > li {
+    margin-left: -1.2rem;
+}
+
+#menu2 > ul > li {
+    margin-left: -0.9rem;
+}
+
+/* menu end */
+
+/* search start */
+
+#search {
+    /* width: 20rem;
+    height: 2.5rem; */
+    width: 0;
+    height: 0;
+    outline: none;
+    opacity: 0;
+    font-size: var(--main-text-size);
+    transition:all 700ms linear;
+}
+
+#search.view {
+    opacity: 1;
+    width: 20rem;
+    height: 2.5rem;
+    transition:all 700ms linear;
+}
+
+#search_icon {
+    margin-right: 4rem;
+}
+
+/* search end */
+
+/* info start */
+
+.info {
+    margin-right: 3rem;
+    margin-top: 0.8rem;
+}
+
+.info_li > ul > li {
+    margin-left: -2.2rem;
+}
+
+/* info end */
+
+/* drop down start */
+
+.drop_menu_ul {
+    /* pointer-events : opacity로 하면 숨겨지는거다 보니 해당영역에
+    마우스를 올리면 hover효과가 인식되는데 해당 이벤트를 사용하면
+    영역에 마우스를 올려도 인식하지 않는다
+
+    display나 visibility가 아닌 opacity로 사용한 이유
+    > 위 두개는 transition 효과적용이 원활하지 않아 opacity로 처리 */
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu_text_li:hover > .drop_menu_ul {
+    opacity: 1;
+    pointer-events: auto;
+    transition: 1s ease;
+}
+
+.info_li:hover > .drop_menu_ul {
+    opacity: 1;
+    pointer-events: auto;
+    transition: 1s ease;   
+}
+
+.drop_menu_li:hover {
+    color:var(--btn_hover_bg);
+}
+
+.icons:hover{
+	color:var(--btn_hover_bg);
+}
+
+/* drop down end */
+
+/* 네비바 이미지 영역 크기 조정 - 02.28 김범수 */
+.img_tag{
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+}
+
+.selectbox{
+	-webkit-appearance:none;
+	text-align: center;
+	background-color: var(--bg);
+	color : var(--main-text-color);
+	font-size : var(--medium-text-size);
+	border: none;
+	outline: none;
+}
+
+.selectbox:hover{
+	border: none;
+	outline: none;
+}

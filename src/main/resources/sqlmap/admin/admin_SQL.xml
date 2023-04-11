@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+
+	<!-- 02.18~ 장재호 -->
+	<delete id="deletes">
+		delete from USER
+		 where USER_ID IN
+		 <foreach collection="list" item="id" index="index" open="(" separator="," close=")" >${id}</foreach>
+	</delete>
+
+	<select id="getDailySales" resultType="int">
+		<![CDATA[
+		select sum(AMOUNT)
+		  from PAID
+		 where date_format(PAID_DATE, '%Y%m%d') = date_format(now(), '%Y%m%d');
+		 ]]>
+	</select>
+		
+	<select id="getTotalSales" resultType="int">
+		select sum(amount)
+		  from PAID
+	</select>
+	
+	<select id="getTodayVisit" resultType="int">
+		<![CDATA[
+		select sum(NUMBER)
+		  from VISIT
+		 where date_format(VISIT_DATE, '%Y%m%d') = date_format(now(), '%Y%m%d');
+		 ]]>
+	</select>
+	
+	<select id="getTotalVisit" resultType="int">
+		select sum(NUMBER)
+		  from VISIT
+	</select>
+	
+	<delete id="videoDel">
+		delete from VIDEO
+		 where VIDEO_ID=#{video_id}
+	</delete>
+	
+	<delete id="videoDels">
+		delete from VIDEO
+		 where VIDEO_ID IN
+		 <foreach collection="list" item="id" index="index" open="(" separator="," close=")" >#{id}</foreach>
+	</delete>
+	
+	<select id="videoCheck" resultType="String">
+		select TITLE
+		  from VIDEO
+		 where TITLE=#{title}
+	</select>
+	
+	<update id="videoDataModify">
+		update VIDEO
+		   set TITLE=#{title}, SUMMARY=#{summary}, VIDEO_URL=#{video_url}, IMAGE_URL=#{image_url},
+		   		CREATE_COUNTRY=#{create_country}, CREATE_YEAR=#{create_year}, GRADE=#{grade}, UPLOAD_DATE=now()
+		 where VIDEO_ID=#{video_id}
+	</update>
+	
+	<select id="getCategory" resultType="com.test.test1.admin.dto.AdminETCDto">
+		select CATEGORY_NAME
+		  from CATEGORY
+	</select>
+	
+	<select id="getGenre" resultType="com.test.test1.admin.dto.AdminETCDto">
+		select `GENRE_NAME(KOR)` as GENRE_NAME
+		  from GENRE
+	</select>
+	
+	<select id="getActor" resultType="com.test.test1.admin.dto.AdminETCDto">
+		select `ACTOR_NAME(KOR)` as ACTOR_NAME
+		  from ACTOR
+		 order by `ACTOR_NAME(KOR)` asc
+	</select>
+
+	<insert id="addCategory">
+		insert into CATEGORY(CATEGORY_NAME)
+		select #{category_name} from dual where not exists(select CATEGORY_NAME from CATEGORY where CATEGORY_NAME=#{category_name})
+	</insert>
+	
+	<insert id="addGenre">
+		insert into GENRE(`GENRE_NAME(KOR)`)
+		select #{genre_name} from dual where not exists(select `GENRE_NAME(KOR)` from GENRE where `GENRE_NAME(KOR)`=#{genre_name})
+	</insert>
+	
+	<insert id="addActorDb">
+		insert into ACTOR(`ACTOR_NAME(KOR)`)			  
+		select #{actor_name} from dual where not exists(select `ACTOR_NAME(KOR)` from ACTOR where `ACTOR_NAME(KOR)`=#{actor_name})
+	</insert>
+	
+	<delete id="delCategory">
+		delete from CATEGORY
+		 where CATEGORY_NAME=#{category_name}
+	</delete>
+	
+	<delete id="delGenre">
+		delete from GENRE
+		 where `GENRE_NAME(KOR)`=#{genre_name}
+	</delete>
+	
+	<select id="actorCheck" resultType="String">		
+		select `ACTOR_NAME(KOR)`
+		  from ACTOR
+		 where `ACTOR_NAME(KOR)` IN
+		 <foreach collection="array" item="actor" index="index" open="(" close=")" separator=",">#{actor}</foreach>					 
+	</select>
+	
+	<insert id="addActor">
+		insert into ACTOR(`ACTOR_NAME(KOR)`)			  
+		values
+		<foreach collection="list" item="actor" index="index" separator=",">(#{actor})</foreach>
+	</insert>
+	
+	<delete id="delActor">
+		delete from ACTOR
+		 where `ACTOR_NAME(KOR)`=#{actor_name}
+	</delete>
+	
+	<insert id="addVideo">
+		insert into VIDEO(TITLE, SUMMARY, VIDEO_URL, IMAGE_URL, CREATE_COUNTRY, CREATE_YEAR, GRADE)
+		values (#{title}, #{summary}, #{video_url}, #{image_url}, #{create_country}, #{create_year}, #{grade})
+	</insert>
+	
+	<insert id="addVideoCategory">
+		insert into VIDEO_CATEGORY(VIDEO_ID, CATEGORY_ID)
+		values ((select VIDEO_ID from VIDEO where TITLE=#{title}),
+				(select CATEGORY_ID from CATEGORY where CATEGORY_NAME=#{category_name}))
+	</insert>
+	
+	<insert id="addVideoGenre">
+		insert into VIDEO_GENRE(VIDEO_ID, GENRE_ID)
+		values ((select VIDEO_ID from VIDEO where TITLE=#{title}),
+				(select GENRE_ID from GENRE where `GENRE_NAME(KOR)`=#{genre_name}))		
+	</insert>
+	
+	<insert id="addVideoActor">
+		insert into VIDEO_ACTOR(VIDEO_ID, ACTOR_ID)
+		values
+		<foreach collection="actor" item="actor" index="index" separator=",">
+			((select VIDEO_ID from VIDEO where TITLE=#{title}), (select ACTOR_ID from ACTOR where `ACTOR_NAME(KOR)`=#{actor}))
+		</foreach>
+	</insert>
+
+	<!-- 02.18~ 장재호 -->
+</mapper>

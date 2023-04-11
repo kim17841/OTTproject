@@ -1,0 +1,61 @@
+:root{
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+    --title-border: 600px;
+}
+/* 팝업창 배경*/
+.popup2{
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 10000; /*팝업창처럼 뜨게 제일 최상위로 올려놓음*/
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /*상태창*/
+}
+
+/* 팝업창 메인*/
+.pwrap2{
+    width: 400px;
+    height: 350px;
+    margin: 0 auto;
+    position: absolute; /* 영역안에 기능들이 보일수 있도록 하는 것 */
+    left: 0;
+    right: 0;
+    top: 150px;  
+    background-color: var(--bg);
+    color: var(--main-text-color);
+    padding: 20px;
+    box-sizing: border-box; /* 텍스트들이 지정해놓은 영역안에 담기기 위함*/
+    border-radius: 10px;
+}
+/* 닫기 버튼 */
+.pwrap2 a{
+   float: right;
+   cursor: pointer;
+}
+table{
+	margin-left : auto;
+	margin-right : auto;
+}
+.popup2 img{
+	margin : 20px;
+	width : 100px;
+	height : 100px;
+}
+
+.popup2 h1,h2,h3,span,h{
+	margin : 10px !important;
+}
+.popup2 select,option{
+	margin-top : 10px;
+	color : black;
+}

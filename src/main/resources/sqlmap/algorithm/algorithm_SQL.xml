@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 관리자 페이지의 차트, 사용자의 알고리즘을 구현하기 위한 Mybatis - 02.16 장재호  -->
+<mapper namespace="algo">
+
+	<select id="check" resultType="Integer">
+		select VIDEO_ID
+		  from ALGORITHM
+		 where USER_ID=(select U.USER_ID from USER U where ID="${id}")
+		   and VIDEO_ID = ${video_id}
+	</select>
+	
+	<insert id="insert">
+		insert into ALGORITHM (USER_ID, VIDEO_ID)
+		values ((select USER_ID from USER where ID="${id}"), ${video_id})
+	</insert>
+	
+	<update id="update">
+		update ALGORITHM
+		   set HIT=HIT+1, LAST_UPDATE_DATE=now()
+		 where USER_ID=(select USER_ID from USER where ID="${id}")
+		   and VIDEO_ID=${video_id}
+	</update>
+	
+	<select id="category" resultType="com.test.test1.algorithm.dto.AlgorithmDto">
+		<![CDATA[	
+		select C.CATEGORY_NAME, SUM(A.HIT) as HIT
+		  from CATEGORY C, VIDEO_CATEGORY VC, ALGORITHM A
+		 where C.CATEGORY_ID = VC.CATEGORY_ID
+		   and VC.VIDEO_ID = A.VIDEO_ID
+		 group by C.CATEGORY_ID;
+		 ]]>
+	</select>
+	
+	<select id="genre" resultType="com.test.test1.algorithm.dto.AlgorithmDto">
+		<![CDATA[
+		select G.`GENRE_NAME(KOR)` as GENRE_NAME, SUM(A.HIT) as HIT
+		  from GENRE G, VIDEO_GENRE VG, ALGORITHM A
+		 where G.GENRE_ID = VG.GENRE_ID
+		   and VG.VIDEO_ID = A.VIDEO_ID
+		 group by G.GENRE_ID;
+		]]>
+	</select>
+	
+	<select id="weeklyVisitor" resultType="com.test.test1.algorithm.dto.AlgorithmDto">
+		(select VISIT_DATE, NUMBER
+		   from VISIT
+		  order by VISIT_DATE desc limit 7)
+		  order by VISIT_DATE asc		 
+	</select>
+	
+	<select id="weeklySales" resultType="com.test.test1.algorithm.dto.AlgorithmDto">
+		(select PAID_DATE, AMOUNT
+		   from PAID
+		  order by PAID_DATE desc limit 7)
+		  order by PAID_DATE asc
+	</select>
+
+	<!-- 시청기록 - 02.27 김범수 -->
+	<select id="userlist" resultType="com.test.test1.video.dto.VideoDto">
+         select v.VIDEO_ID, v.TITLE, v.IMAGE_URL, v.VIDEO_URL
+           from VIDEO v
+           join ALGORITHM a
+          where v.VIDEO_ID = a.VIDEO_ID
+            and a.USER_ID = (select USER_ID from USER where ID=#{user_id})
+		  order by LAST_UPDATE_DATE desc
+	</select>
+</mapper>

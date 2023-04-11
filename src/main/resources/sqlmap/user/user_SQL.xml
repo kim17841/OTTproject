@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<insert id="insert">  
+	    <![CDATA[
+	    insert into USER (ID, EMAIL, PASSWORD, NICKNAME, PHONE_NUM)  
+	    values (#{id}, #{email}, #{password}, #{nickname}, #{phone_num})
+	    ]]>
+	</insert>
+	
+	<select id="id_check" resultType="String">
+		select ID
+		  from USER
+		 where ID=#{id}
+	</select>
+	
+	<select id="email_check" resultType="String">
+		select EMAIL
+		  from USER
+		 where EMAIL=#{email}
+	</select>
+	
+	<select id="login" resultType="String">
+		select NICKNAME
+		  from USER
+		 where ID=#{id}
+	</select>
+	
+	<select id="pwGet" resultType="String">
+		select PASSWORD
+		  from USER
+		 where ID=#{id}
+	</select>
+	
+	<select id="findid" resultType="String">
+        select ID 
+          from USER
+         where EMAIL = #{email}
+	</select>
+	
+	<select id="findpw" resultType="String">
+        select NICKNAME
+          from USER
+         where EMAIL = #{email} 
+           and ID = #{id}
+	</select>
+	
+	<update id="paid">
+		<![CDATA[
+		update USER
+		   set SUBSCRIBE_YN="Y", PAID_M=PAID_M+${months}, EXPIRATION_DATE=(date_add(NOW(),interval ${months} month))
+		 where USER_ID = (select U.USER_ID from (select USER_ID from USER where ID="${ID}") AS U);
+		]]>
+	</update>
+	
+	<select id="paidCheck" resultType="String">
+		select SUBSCRIBE_YN
+		  from USER
+		 where ID="${ID}"
+	</select>
+	
+	<update id="rePaid">
+		update USER
+		   set PAID_M=PAID_M+${months}, EXPIRATION_DATE=(date_add(NOW(),interval ${months} month))
+		 where USER_ID = (select U.USER_ID from (select USER_ID from USER where ID="${ID}") AS U);		   
+	</update>
+	
+	<update id="changepw">
+		update USER
+		   set PASSWORD=#{password}
+		 where ID = #{id}
+	</update>
+
+<!--    개인정보 상세조회	 _ 23/02/17 김지혜  -->
+	<select id="detail" resultType = "com.test.test1.user.dto.UserDto">
+		select ID, EMAIL, NICKNAME, PHONE_NUM, EXPIRATION_DATE
+		  from USER
+		 where ID=#{user_id}
+	</select>
+	
+	<!-- 유저 리스트 페이징 및 검색 포함 02.18 장재호 -->
+	<select id="list" resultType="com.test.test1.user.dto.UserDto">
+		select USER_ID, ID, NICKNAME, EMAIL, PHONE_NUM, SUBSCRIBE_YN, DELETE_YN, CREATE_DATE
+		  from USER
+		 where <if test="option == 'ID'"> ID like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'NICKNAME'"> NICKNAME like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'SUBSCRIBE_YN'"> SUBSCRIBE_YN like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'DELETE_YN'"> DELETE_YN like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == null or option == ''">1=1</if>
+         order by CREATE_DATE desc
+         limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="listCount" resultType="int">
+		select count(USER_ID)
+		  from USER
+		 where <if test="option == 'ID'"> ID like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'NICKNAME'"> NICKNAME like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'SUBSCRIBE_YN'"> SUBSCRIBE_YN like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'DELETE_YN'"> DELETE_YN like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == null or option == ''">1=1</if>
+	</select>
+	<!-- 유저 리스트 페이징 및 검색 포함 끝-->
+	
+	<!-- 유저 결제 시 PAID DB등록 - 02.19 장재호 -->
+	<select id="todayPaidCheck" resultType="String">
+		<![CDATA[
+		select PAID_DATE
+		  from PAID
+		 where date_format(PAID_DATE, '%Y%m%d') = date_format(now(), '%Y%m%d');
+		 ]]>
+	</select>
+	
+	<insert id="todayFirstPaid">
+		insert into PAID (PAID_DATE, AMOUNT)
+		values (date_format(now(), '%Y%m%d'), #{months})
+	</insert>
+	
+	<update id="todayAddPaid">
+		<![CDATA[
+		update PAID
+		   set AMOUNT=AMOUNT+#{months}
+		 where date_format(PAID_DATE, '%Y%m%d') = date_format(now(), '%Y%m%d')
+		 ]]>
+	</update>
+	<!-- 유저 결제 시 PAID DB등록 끝 -->
+	
+	<!-- 유저 방문자수 - 02.19 장재호 -->
+	<select id="todayVisitCheck" resultType="String">
+		<![CDATA[
+		select VISIT_DATE
+		  from VISIT
+		 where date_format(VISIT_DATE, '%Y%m%d') = date_format(now(), '%Y%m%d');
+		 ]]>
+	</select>
+	
+	<insert id="todayFirstVisit">
+		insert into VISIT (VISIT_DATE, NUMBER)
+		values (date_format(now(), '%Y%m%d'), 1)
+	</insert>
+	
+	<update id="todayAddVisit">
+		<![CDATA[
+		update VISIT
+		   set NUMBER=NUMBER+1
+		 where date_format(VISIT_DATE, '%Y%m%d') = date_format(now(), '%Y%m%d')
+		 ]]>
+	</update>	
+	<!-- 유저 방문자수 끝 -->
+
+    <!-- 개인정보 상세수정  _ 23/02/20 김지혜  -->
+	<update id="infoModify">
+		update USER
+		   set EMAIL = #{email}, NICKNAME= #{nickname}, PHONE_NUM= #{phone_num}
+         where ID = #{id}
+	</update>
+	
+	<!-- video detail 내 댓글등록 위해 유저정보 받아오기 02.20 장민실  -->
+	<select id="getid" resultType="int">
+		<![CDATA[
+		select USER_ID
+		  from USER
+		 where ID=#{user_id}
+		]]>
+	</select>
+
+	<update id="img_update">
+		update USER
+		   set IMG = #{saveFilestr}
+		 where ID = #{id}
+	</update>
+
+	<!-- 네비바 이미지 불러오기 - 02.28 김범수 -->
+	<select id="navbarImg" resultType="String">
+		<![CDATA[
+		select IMG
+		  from USER
+		 where ID=#{user_id}
+		]]>
+	</select>
+</mapper>

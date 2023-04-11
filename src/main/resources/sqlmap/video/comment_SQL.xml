@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+
+	<!-- 원댓글등록 02.20 장민실  -->
+	<insert id="insert">
+		<![CDATA[
+		insert into VIDEO_COMMENT (VIDEO_ID, USER_ID, PID, COMMENTARY) 
+		values (#{video_id} ,#{user_id}, #{pid}, #{commentary})
+		]]>
+	</insert>
+	
+	<!-- 원댓글 등록할때 pid값 자동증가를 위해 DB의 원댓글 중 마지막 pid값 가져오기 02.23 장민실 -->
+	<select id="get_pid" resultType="int">
+		select PID
+		  from VIDEO_COMMENT
+		 where DEPTH=0
+		 order by PID desc limit 1
+	</select>
+	
+	<!-- 대댓글 작성 02.28 장민실 -->
+	<insert id="cocomInsert">
+		<![CDATA[
+		insert into VIDEO_COMMENT (VIDEO_ID, USER_ID, PID, COMMENTARY, DEPTH) 
+		values (#{video_id} ,#{user_id}, #{pid}, #{commentary}, #{depth})
+		]]>
+	</insert>
+	
+	<!-- 원댓글목록 불러오기 02.21 장민실 -->
+	<!-- img 추가 - 03.06 김범수 -->
+	<select id="replyList" resultType="com.test.test1.video.dto.CommentDto">
+		<![CDATA[
+		select vc.COMMENT_ID, vc.PID, vc.COMMENTARY, vc.VIDEO_ID, vc.DEPTH, vc.DEPTH_LEV, vc.CREATE_DATE, u.NICKNAME, u.IMG
+  		  from VIDEO_COMMENT vc
+          join USER u
+            on vc.USER_ID = u.USER_ID
+  		 where vc.VIDEO_ID=#{video_id} and DEPTH=0
+  		 order by vc.CREATE_DATE desc
+		]]>  	
+	</select>
+	
+	<!-- 대댓글 목록 불러오기 02.23 장민실 -->
+	<!-- img 추가 - 03.06 김범수 -->
+	<select id="cocomList" resultType="com.test.test1.video.dto.CommentDto">
+		<![CDATA[
+		select vc.COMMENT_ID, vc.PID,  vc.COMMENTARY, vc.VIDEO_ID, vc.DEPTH, vc.DEPTH_LEV, vc.CREATE_DATE, u.NICKNAME, u.IMG
+  		  from VIDEO_COMMENT vc
+          join USER u
+            on vc.USER_ID = u.USER_ID
+  		 where vc.VIDEO_ID=#{video_id} and DEPTH=1 and PID=#{pid}
+  		 order by vc.CREATE_DATE desc
+		]]>  
+	</select>
+	
+	<!-- 댓글수정 02.27 장민실 -->
+	<update id="edit">
+		update VIDEO_COMMENT
+		   set COMMENTARY=#{commentary}
+		 where COMMENT_ID=#{comment_id}
+	</update>
+	
+	<!-- 댓글,대댓글 삭제 02.23 장민실 -->
+	<delete id="delete">
+		delete from VIDEO_COMMENT
+		 where COMMENT_ID=#{comment_id}
+	</delete>
+
+
+</mapper>

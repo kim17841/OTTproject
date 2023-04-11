@@ -1,0 +1,214 @@
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+   }
+
+
+:root {
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+}
+
+* {
+	font-family: 'NanumBarunGothic';
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+    overflow-x:hidden; 
+}
+
+
+
+/* main video start */
+#main_video {
+  transform: translateY(1vh);
+  position:relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* main background video */
+#bg_video{
+  width: 93.5%;
+  height: 100%;
+  max-height: 70vh;
+  max-width:93.5vw;
+  object-fit: fill;
+  filter: drop-shadow(8px 8px 10px gray);
+  transform: translateY(6.5rem);
+}
+
+/* main video end */
+
+/* section start */
+.slider {
+        display: flex;
+        justify-content:center;
+        align-items:center;
+        height: 350px;
+        overflow: hidden;
+        position: relative;
+}
+
+#section_all{
+    margin-top : 100px;
+    margin-left : 30px;
+}
+
+.section{
+    height: 350px;
+    display: flex;
+}
+
+/* Top 5 recommendations */
+#top_5{
+	display: flex;  
+    position: relative;
+    transform: translateX(38px);
+    top:20px;
+    height:auto; 
+    width: 98%;  
+}
+#top_5 .conta{
+	height: 310px;
+    width: 100vh; 
+    position: relative;
+    transform: translateY(-30px);
+  
+}
+#top_5 .conta img{
+	height: 100%;
+	width:  85%;	
+}
+
+
+
+/* Top 5 recommendations end */
+
+
+/* Top 5 recommendations text */
+#top5_text{
+    padding: 40px 0px 0px 60px;
+    transform: translateY(-30px);
+}
+
+ 
+.number {
+  position: absolute;
+  top: 10%;
+  left: -20px;
+  transform: translateY(-50%);
+  font-size: 50px;
+  font-weight: bold;
+  color:var(--main-text-color);
+  padding: 20px;
+  border-radius: 50%;
+  width: 40px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 8px 10px 10px rgba(0, 0, 0); 
+}
+
+/* Top 5 recommendations text  end*/
+
+/* 장르 토글영역 div */
+.sub-menu {
+  transform: translateX(40px);
+}
+
+.conta img{
+   height: 270px;
+   width: 90%;
+}
+
+/* 이미지 링크 div */
+.conta{
+   margin: 10px;
+   height: 280px;
+   width:250px;
+}
+
+/* 검색결과  div */
+#search-results{
+	display: flex;	
+	transform: translateX(50px);
+	padding-top:50px;
+}
+
+/* 슬라이드 버튼 시작 */
+.slick-arrow {
+    padding:5px;
+    background-color: var(--bg);
+    border: none;  
+    cursor: pointer; 
+}
+
+.slick-next{
+	position: relative;
+	transform: translateX(-15px);
+	background-color:transparent;
+}
+
+.fa-solid {
+  color: white;
+  font-size: 50px;
+}
+.fa-solid:hover{
+	opacity: 0.5;
+}
+/* 슬라이드 버튼 끝 */
+
+/* main text */
+.section_main_text{
+    font-size:var(--large-text-size);
+    color:var(--main-text-color);
+    padding:0 0 0 60px; 
+}
+
+/* main text end*/
+
+/* section end */
+
+/* adv area start */
+#adv_area {
+    background-color: burlywood;
+    position: absolute;
+    left: 90%;
+    top: 670px;
+    height: 900px;
+    width: 180px;
+}
+
+/* adv area end */
+
+map img{
+	height: 14px;
+	width : 13px;
+}
+
+a{
+	text-decoration : none;
+	color: var(--main-text-color); /*03.06 - a태그 색깔 부여 김범수 수정 */
+}
+
+/* 네비바 영역 조정- 02.28 김범수  */
+.drop_menu_ul {
+	margin-left: 1vw;
+	margin-top: -1.9vh;
+}

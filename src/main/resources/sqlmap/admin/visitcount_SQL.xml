@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visit">
+
+	<insert id="insert">
+	    INSERT INTO VISITOR VALUES (now())
+	</insert>
+	
+	<select id="total">
+		select count(*) from VISITOR
+	</select>
+	
+	<select id="today">
+		<![CDATA[
+		select count(*)
+		  from VISITOR
+		 where date_format(V_DATE, '%Y%m%d') = date_format(now(), '%Y%m%d')
+	 	]]>
+	</select>
+	
+</mapper>

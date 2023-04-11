@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="video">
+
+	<insert id="insert" parameterType="hashMap" useGeneratedKeys="true" keyProperty="VIDEO_ID">  
+		<![CDATA[
+		insert into VIDEO (TITLE, SUMMARY, VIDEO_URL,IMAGE_URL, CREATE_COUNTRY, CREATE_YEAR, GRADE) 
+		values (#{title}, #{summary}, #{url},#{imgurl}, #{country}, #{year}, #{grade})
+		]]>
+	</insert> 
+	
+	<!-- 비디오  전체조희 쿼리문  -->
+	<select id="list" resultType="com.test.test1.video.dto.VideoDto">
+		<![CDATA[
+		select distinct v.VIDEO_ID, v.TITLE, v.IMAGE_URL, v.VIDEO_URL, v.RECOMMAND, c.CATEGORY_ID, g.GENRE_ID
+          from VIDEO v 
+		  left join VIDEO_CATEGORY c
+		    on v.VIDEO_ID = c.VIDEO_ID
+		  left join VIDEO_GENRE g
+		    on v.VIDEO_ID = g.VIDEO_ID
+		 where 1=1
+		   and (c.CATEGORY_ID = 1 OR c.CATEGORY_ID = 3)
+		   and (g.GENRE_ID = 1 or g.GENRE_ID = 2 or g.GENRE_ID = 3 or g.GENRE_ID = 4 or g.GENRE_ID = 5)
+		    or g.GENRE_ID is null
+		 order by recommand DESC
+		]]>
+	</select>
+	
+	<!--  비디오 상세 조희 쿼리문 -->
+	<select id="detail" resultType="com.test.test1.video.dto.VideoDto">
+		<![CDATA[
+		select TITLE, VIDEO_ID, VIDEO_URL, IMAGE_URL, SUMMARY, CREATE_COUNTRY, CREATE_YEAR, GRADE, UPLOAD_DATE
+		  from VIDEO
+		 where VIDEO_ID=#{video_id}
+		]]>
+	</select>
+	
+	<!--  비디오 상세 영어버전 조희 쿼리문 -->
+	<select id="detail_eng" resultType="com.test.test1.video.dto.VideoEngDto">
+		<![CDATA[
+		select vd.`V_TITLE(ENG)` as title, v.VIDEO_ID, v.VIDEO_URL, v.IMAGE_URL, vd.`V_SUMMARY(ENG)` as summary, v.CREATE_COUNTRY, v.CREATE_YEAR, v.GRADE, v.UPLOAD_DATE
+		  from VIDEO v
+          join VIDEO_DETAIL vd
+            on v.VIDEO_ID=vd.VIDEO_ID
+		 where v.VIDEO_ID=#{video_id}
+		]]>
+	</select>
+	
+	<!-- 비디오 상세조회 내 배우정보 받아오기  -->
+	<select id="actor" resultType="com.test.test1.video.dto.VideoDto">
+		<![CDATA[
+		select a.`ACTOR_NAME(KOR)` as actor
+  		  from VIDEO v
+  		  join VIDEO_ACTOR va
+  			on v.VIDEO_ID = va.VIDEO_ID
+  		  join ACTOR a
+  			on va.ACTOR_ID = a.ACTOR_ID
+    	 where v.VIDEO_ID=#{video_id}
+ 		]]>
+	</select>
+	
+	<!-- 비디오 상세조회 내 배우정보 영어버전 받아오기  -->
+	<select id="actor_eng" resultType="com.test.test1.video.dto.VideoEngDto">
+		<![CDATA[
+		select a.`ACTOR_NAME(ENG)` as actor
+  		  from VIDEO v
+  		  join VIDEO_ACTOR va
+  			on v.VIDEO_ID = va.VIDEO_ID
+  		  join ACTOR a
+  			on va.ACTOR_ID = a.ACTOR_ID
+    	 where v.VIDEO_ID=#{video_id}
+ 		]]>
+	</select>
+	
+	<!-- 내보관함 기능 구현 위한 video_id 받아오기 -->
+	<select id="getid" resultType="int">
+		<![CDATA[
+		select VIDEO_ID
+  		  from VIDEO
+    	 where TITLE = #{title}
+ 		]]>
+	</select>
+	
+	<!-- 비디오 리스트 관리자 페이징 및 검색 포함 02.19 장재호 -->
+	<!-- 추천수 정렬 추가 02.22 김범수 -->
+	<select id="adminList" resultType="com.test.test1.video.dto.VideoDto">
+		select *
+		  from VIDEO
+		 where <if test="option == 'TITLE'"> TITLE like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == null or option == ''">1=1</if>
+		       
+		 <!-- 추천수 정렬 종류에 따른 정렬 부여 -->
+		 <choose>
+		 	<when test="sort == null or sort == ''"><![CDATA[order by UPLOAD_DATE desc]]></when>
+		 	<when test="sort == 'desc1'"><![CDATA[order by RECOMMAND desc]]></when>
+		 	<when test="sort == 'asc1'"><![CDATA[order by RECOMMAND asc]]></when>
+		 </choose>
+         limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="adminListCount" resultType="int">
+		select count(VIDEO_ID)
+		  from VIDEO
+		 where <if test="option == 'TITLE'"> TITLE like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == null or option == ''">1=1</if>
+	</select>
+	<!-- 비디오 리스트 페이징 및 검색 포함 끝-->
+	
+</mapper>

@@ -1,0 +1,234 @@
+:root {
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+}
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 400;
+	src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+	src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+   }
+
+*{
+    margin: auto;
+    box-sizing: border-box;
+    font-family:'NanumBarunGothic'; 
+    color : var(--main-text-color);
+}
+
+body{
+    background-color: var(--bg);
+}
+
+/* ==============================================================================================  */
+/* 회원가입 전체페이지  */
+.container_j {
+    width: 100%;
+    display: flex;
+	margin-left: 30vw;
+
+}
+
+/* 네비바 영역지정  */
+#navSection{
+	height : 6rem;
+}
+
+
+/* =====================================   비밀번호 보기 감추기      =================================  */
+
+/* 비밀번호 눈아이콘 */
+.fa-solid{
+	position : relative;
+	left : 350px;
+	top: -35px;
+}
+
+/* ==============================================================================================  */
+
+/* 회원가입폼 담는 박스  */
+#mainDiv_j{
+    width: 50%;
+    height: 100vh;
+    justify-self: center;
+    padding: 5vh 5vw 5vh 5vw;
+} 
+/* 회원가입폼 담는 박스 (핸드폰모양틀) */
+#viewDiv_j{
+	width: 500px;
+    height: 1100px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 60px;
+    border-radius: 60px 60px;
+}
+
+
+/* 회원가입폼에 주제 "LOGO 회원가입"텍스트 */
+#signUpText_j{
+	color:var(--main-text-color);
+	font-size:var(--large-text-size);
+	display: block;
+	margin: 30px;
+	height: 50px;
+
+}
+
+/* 아이디/ 이메일 중복체크버튼  */
+#btn, #email_btn{
+	height :30px;
+	width: 100px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	font-size:var(--small-text-size);
+	margin : 1vh 0;
+	color :var(--main-text-color);
+	background-color: var(--btn_bg);
+}
+
+/* 이메일 입력란 공간 */
+#email{
+	margin-top: 2vh;
+}
+/* 이메일 인증버튼 공간 */
+#emailchk{
+	margin-top: 4vh;
+}
+
+
+/* 회원정보 입력란  공간*/
+.wrapInput {
+	z-index : 1;
+	height: 80px;
+	margin-top:10px;
+
+}
+
+/* 회원정보 입력란  */
+.wrapInput input{
+    width: 380px;
+    height: 50px;
+    font-size:var(--small-text-size);
+    padding: 0 0 0 20px;
+    background-color: rgb(25, 26, 30);
+    color:var(--main-text-color);
+    border: none;
+    border-radius:  10px;
+    
+}
+/* 회원정보 입력란 의 ::placeholder */
+.wrapInput input::placeholder{
+    color: rgb(90, 90, 90);
+}
+/* 회원정보 입력란 의 :input:focus */
+.wrapInput input:focus{
+    outline: none;
+    background-color:rgb(42, 43, 49);
+}
+
+/* span : 아이디 & 이메일 & 닉네임 - 유효성검사/중복처리 확인 메시지글   */
+span{
+	font-size:var(--small-text-size);
+}
+
+/* span : 비밀번호 - 유효성검사/중복처리 확인 메시지글   */
+.wrapInput #pwMsg{
+	margin-left: -25px;
+}
+
+
+/* ====================================== 체크박스 ========================================================  */
+/* 체크박스 전체 담고있는 박스 */
+#checkbox{
+    color:var(--main-text-color);
+    font-size: var(--medium-text-size);
+    text-align: start;
+    margin: 10px 0 10px 10px;
+
+}
+
+/* 동의항목 3개 */
+.checkB{
+    margin:14px 0 0 20px;
+    
+}
+/* 가입하기 버튼  */
+#submit{
+    width: 380px;
+    height: 50px;
+    background-color:var(--btn_bg);
+    border-radius: 10px;
+    color: var(--main-text-color);
+    font-size:var(--medium-text-size);
+    border: none;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+}
+
+
+
+/* ==============================================================================================  */
+
+
+/* 이메일 인증 상태 메세지  */
+.formSpans {
+    display: inline-block;
+    font-size:var(--small-text-size);
+}
+
+/* 이메일인증 (이메일인증번호 발송)버튼 */
+.email_checkbtn{
+    font-size :var(--medium-text-size);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    width: 100px;
+    margin-bottom: 1vh;
+    color:var(--main-text-color);
+    background-color: var(--btn_bg);
+}
+
+
+/* 인증번호입력란 */
+.authorkey{
+    width: 200px;
+    height: 40px;
+    background-color: rgb(25, 26, 30);
+    border: none;
+    border-radius:  10px;
+    padding: 0 0 0 20px;
+    margin-bottom : 10px;
+    color:var(--main-text-color);
+}
+
+/* 인증번호 입력창 focus 효과 추가*/
+.authorkey:focus{
+    outline: none;
+    background-color:rgb(42, 43, 49);
+}
+
+/* 이메일 인증번호 확인버튼 */
+.key_submit{
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    color:var(--main-text-color);
+    background-color: var(--btn_bg);
+}
+
+/* footer 영역 추가  02/27 김지혜 */
+#signUpF{
+	margin-top : 20rem;
+}

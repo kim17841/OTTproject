@@ -1,0 +1,88 @@
+/* 
+1. menu와 info 영역에 class명이 같은 부분들의 css 적용은 menu에서 일괄 적용함
+2. 메뉴의 drop down과 info의 drop down은 최하단 drop down 나눠놓은 영역에서 일괄처리
+(class로 겹치는 부분이 있기때문에 나눠놓으면 보기 더 불편할 것 같아서)
+*/
+
+/* 로그인 회원가입 네비바 */
+
+:root {
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    color : var(--main-text-color);
+}
+
+body {
+    background-color: var(--bg);
+    height: 100%;
+    width: 100%;
+    z-index : 1000;
+}
+
+nav {
+    /* background-color: dimgrey; */
+    display: flex;
+    position: fixed;
+    height: 6rem;
+    width: 100%;
+    align-items: center;
+}
+
+
+
+
+/* =================================== header 영역 start 02/27김지혜  네비바 수정 ===================================*/
+/* 네비바 - 로고/다국어지원기능 들어감 */
+nav {
+    display: flex;
+    height: 6rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+/* 네비바 - 로고/다국어지원기능 들어감 */
+.logo img{
+	margin-top : 5vh;
+    width: 20rem;
+    height: 8rem;
+    object-fit :cover;
+}
+
+/* 다국어지원기능 영역 */
+.langdropdown{
+    margin-right: 1rem;
+    background-color: var(--bg);
+    border-radius: 10px;
+}
+
+/* 다국어지원기능 셀렉트 크기 조정 */
+.selectbox{
+    width: 150px;
+    height: 30px;
+    padding-left: 5px;
+    font-size: var(--medium-text-size);
+    border-radius: 3px;
+    background-color: var(--bg);
+    outline: 0 none;
+}
+
+/* =================================== header 영역 end ===================================*/
+
+
+

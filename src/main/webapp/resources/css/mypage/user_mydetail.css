@@ -1,0 +1,369 @@
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+   }
+
+/* 기본 설정 -> 변수로 사용 */ 
+:root {
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+}
+/* 전체 적용 - 기본 margin/padding제외, 박스 사이즈 조정(테두리 기준 크기 설정), 글씨체, 글씨 컬러, 링크밑줄 제거  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'NanumBarunGothic'; 
+    color: var(--main-text-color);
+    text-decoration: none;
+}
+
+/* 전체 배경색 */ 
+body{
+    background-color: var(--bg);
+}
+
+  /*=============================기본 css 세팅 end  =========================*/
+
+  /*=========================== 모달창내용 관련 css start  ===========================*/ 
+   
+ /* 모달창 배경 스타일링  23/02/20 김지혜 */  
+#user_info_myModal {
+	display: none;  /* 처음에는 모달창이 보이지 않도록 함 */
+	position: fixed;  /* 화면에 고정 */
+	z-index: 1;  /* 다른 요소보다 위에 표시 */
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%; 
+	overflow: auto;  /* 모달창이 크기를 벗어나면 스크롤이 생성됨 */
+	background-color: rgba(0,0,0,0.9);  /* 배경색 */
+}   
+
+/* 팝업창 메인*/
+.wrap{
+    width: 500px;
+    height: 600px;
+    margin: 0 auto;
+    position: absolute; /* 영역안에 기능들이 보일 수 있도록 하는 것 */
+    left: 0;
+    right: 0;
+    top: 150px;  
+    background-color: var(--bg);
+    color: var(--main-text-color);
+    padding: 55px;
+    box-sizing: border-box; /* 텍스트들이 지정해놓은 영역안에 담기기 위함*/
+    border-radius: 10px;
+}
+
+/* 닫기 버튼 */
+.wrap .closebtn{
+	float: right;
+	cursor: pointer;
+}
+
+.wrap .closebtn {
+  color: #aaa; /* 닫기 버튼 색상 */
+  float: right; /* 오른쪽으로 정렬 */
+  font-size:var(--large-text-size);
+  font-weight: bold;
+}
+
+.wrap .closebtn:hover, .wrap .closebtn:focus {
+  color: black; /* 마우스를 올리면 색상이 변경됨 */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+  /*=========================== 모달창내용 관련 css end  ===========================*/ 
+   
+
+/* 팝업창 주제 '회원정보 수정' 텍스트란 위치지정 */
+.wrap h2{    
+    margin-bottom: 30px;
+}
+
+/* 입력창 높이 조정 */
+.input_text{
+    height: 60px;
+    font-size: var(--title-size);
+}
+
+/* 입력창 크기, 컬러 조정 */
+.input_size {
+    width: 380px;
+    height: 60px;
+    font-size: var(--medium-text-size);
+    padding: 0 0 0 20px;
+    background-color: rgb(25, 26, 30); /* 입력창 컬러 */
+    border: none;
+    border-radius:  10px;
+}
+
+/* 입력하기 전에 띄울 글씨 컬러 */
+.input_size::placeholder {
+    color: rgb(90, 90, 90);/* 입력창 입력전 글씨 컬러 */
+}
+
+/* 입력창 포커스효과 부여 */
+.input_size:focus{
+    outline: none;
+    background-color:rgb(42, 43, 49); /* 입력창 포커스 컬러 */
+}
+
+/* 이메일중복체크관련 */
+.other{
+    margin-top: 10px;
+    height: 30px;
+}
+
+/* 최종정보수정 버튼 크기, 컬러 조정  */
+.changeBtn {
+    width: 380px;
+    height: 50px;
+    background-color:var(--btn_bg);
+    border-radius: 10px;
+    font-size: var(--medium-text-size);
+    border: none;
+    cursor: pointer;
+    margin: 2vh 0 0 0;
+}
+
+/* 최종정보수정 버튼 hover효과 컬러  */
+.changeBtn:hover {
+    background-color:var(--btn_hover_bg);
+    border:0.5px solid red;;
+}
+
+/* 인증번호입력란 */
+.authorkey{
+    width: 200px;
+    height: 40px;
+    background-color: rgb(25, 26, 30);
+    border: none;
+    border-radius:  10px;
+    padding: 0 0 0 20px;
+    color:var(--main-text-color);
+}
+
+/* 인증번호 입력창 focus 효과 추가*/
+.authorkey:focus{
+    outline: none;
+    background-color:rgb(42, 43, 49);
+}
+
+/* 이메일 인증번호 확인버튼 */
+.key_submit{
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--btn_bg);
+    border: none;
+    color: var(--main-text-color);
+}
+
+/* 이메일인증 (이메일인증번호 발송) & 이메일중복체크 버튼 */
+.email_checkbtn, .emailCheck{
+    font-size :var(--medium-text-size);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    width: 12vh;
+    margin-top: -1vh;  
+    color:var(--main-text-color); 
+    background-color: var(--btn_bg);
+}
+
+/***********************************************************************/
+/* 네비바 영역지정  */
+#navSection{
+	height : 6rem;
+}
+
+/* 내정보 화면 정보  & 입력창테두리 & 모달창 버튼에 글씨 설정  */
+.right-side .input_text2 input, button{
+	color : black;
+}
+
+/* 이메일 중복체크 결과 text & 닉네임 */
+span{
+    color: var(--main-text-color);
+    font-size:var(--small-text-size);
+    margin: 10px 0 10px 0px;	
+}
+
+/* 내정보 화면 정보  간격 설정  */
+.input_text2{
+	margin : 20px;
+}
+
+/* 내정보 담는 가장 큰 영역  */
+.container {  	
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    position: relative;
+}
+
+/* (좌우)내정보 담는 영역  */
+.container .card {
+    height: 45vh;
+    width: 40%;
+    position: absolute; 
+    left:10vh;  
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Lora', serif;
+}
+
+/* 내 정보 박스 */
+.container .card .form {
+	background-color:white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+/* 내 정보 박스에 왼쪽 영역  */
+.container .card .left-side {
+    width: 40%;
+    text-align : center;
+    margin : auto;
+}
+
+/* 내 정보 박스에 왼쪽 영역(이미지) */
+.container .card .left-side img {
+    border-radius: 100%;
+    /* 프로필 이미지 영역 크기 변경 - 02.28 김범수  */
+	width : 200px;
+	height : 200px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* 내 정보 박스에 오른쪽 영역  */
+.container .card .right-side {
+	width : 60%;
+    height: 100%;
+    padding: 5px;
+}
+
+/* 내 정보 입력된 값을 담고있는 박스  */
+.right-side .input_text2 input{
+    width: 100%;
+    height: 25px;
+    border: 1px solid #eaeaec;
+    outline: 0;
+    padding : 5px, 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    transition: all 0.5s
+}
+
+/* 내 정보 입력된 값을 담고있는 박스  */
+.right-side .input_text2 input:focus~span {
+    color: #7047eb !important
+}
+
+/* 내 정보 수정하기 버튼  */
+#btnWrite {
+    height: 40px;
+    width: 100%;
+    border: none;
+    color:var(--main-text-color);
+    font-size:var(--small-text-size);
+    background-color:var(--btn_bg);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s
+}
+
+/* 내 정보 수정하기 버튼 _ :hover  */
+#btnWrite:hover {
+    background-color:var(--btn_hover_bg) !important
+}
+
+/* 구분선 */
+hr{
+	width : 90%; 
+	margin:auto;
+}
+
+/*  내 보관함 기능 CSS _ 김범수  */
+
+/* section start */
+/* 내보관함 text */
+.mylocker_text{
+   font-size: var(--large-text-size);
+   color: var(--main-text-color);
+   padding: 3vh 0 0 5vw; 
+}
+
+/* 프로필 이미지 변경 버튼 - 02.28 김범수  */
+#uploadFile{
+	display: none;
+}
+
+.input_file_box{
+	width: 100px;
+    height: 20px;
+    background-color: gray;
+    border-radius: 4px;
+    margin-left: 5.7vw;
+	margin-top: 1vh;
+}
+
+/* 네비바 영역 조정- 02.28 김범수  */
+.drop_menu_ul {
+	margin-top: -2.2vh;
+	margin-left: -1vw;
+}
+
+/* 내보관함 슬릭 -> 케러셀로 변경 03.07 김범수  */
+.section{
+	width: 100%;
+}
+
+.swiper-container {
+	width : 93%;
+	height: 330px;
+}
+
+.swiper-slide {
+   text-align:center;
+   display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+   align-items:center; /* 위아래 기준 중앙정렬 */
+   justify-content:center; /* 좌우 기준 중앙정렬 */
+}
+
+.test img{
+	height: 300px;
+	width: 230px;
+}
+
+#next1, #next2, #prev1, #prev2{
+	margin: 0 -0.5vw;
+	background-image: none;
+	top: 10px;
+	margin-top: 140px;
+}
+
+.slick-arrow{
+	font-size: 50px;
+	background-color: none;
+	border: none;
+}
+/* section end */
+

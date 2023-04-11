@@ -1,0 +1,31 @@
+#userChat{
+	position : fixed;
+	top : 65%;
+	width : 30%;
+}
+
+
+#userChat .hidden{
+	visibility : hidden;
+}
+
+#buttonForm{
+	width : 100%;
+}
+
+#chatIcon {
+	cursor : pointer;
+	font-size : 50px;
+	animation: colorChange 1s infinite;
+	will-change: transform;	
+}
+
+@keyframes colorChange {
+  from {
+    color : #777;
+  }
+  
+  to {
+    color : #000;
+  }
+}

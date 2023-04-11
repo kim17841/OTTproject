@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="apiUser">
+
+	<select id="apiCheck" resultType="String">
+		select EMAIL
+		  from USER
+		 where EMAIL=#{email}
+	</select>
+	
+	<insert id="apiSignUp">
+		insert into USER (ID, EMAIL, PASSWORD, NICKNAME, CREATE_TYPE)
+		values (#{email}, #{email}, #{id}, #{nickname}, #{create_type})
+	</insert>
+	
+	<select id="apiSignIn" resultType="String">
+		select NICKNAME
+		  from USER
+		 where EMAIL=#{email}
+	</select>
+	
+	<select id="getNick" resultType="String">
+		select NICKNAME
+		  from USER
+		 where ID=#{id}
+	</select>
+	
+</mapper>

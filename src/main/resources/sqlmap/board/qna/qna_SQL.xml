@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="qna">
+
+	<insert id="q_create">
+		insert into QNA(ID, Q_SUBJECT, Q_CONTENT, PASSWORD)
+		values (#{id}, #{q_subject}, #{q_content}, #{password, jdbcType=VARCHAR})
+	</insert>
+	
+	<insert id="q_create2">
+		insert into QNA(USER_ID, ID, Q_SUBJECT, Q_CONTENT, PASSWORD)
+		values ((select USER_ID from USER where ID=#{id}), #{id}, #{q_subject}, #{q_content}, #{password, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="q_list" resultType="com.test.test1.board.qna.dto.QnaDto">
+		select QUESTION_ID, ID, Q_SUBJECT, Q_CONTENT, ANSWER, Q_CREATE_DATE, PASSWORD, ISLOGINED
+		  from QNA
+		 where <if test="option == 'ID'"> ID like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'SUBJECT'"> Q_SUBJECT like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'CONTENT'"> Q_CONTENT like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'SUBJECT,CONTENT'"> Q_SUBJECT like CONCAT('%',#{keyword},'%')
+		                                            or Q_CONTENT like CONCAT('%',#{keyword},'%')</if>		        
+		       <if test="option == null or option == ''">1=1</if>
+         order by QUESTION_ID desc
+         limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="listCount" resultType="int">
+		select count(QUESTION_ID)
+		  from QNA
+		 where <if test="option == 'ID'"> ID like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'SUBJECT'"> Q_SUBJECT like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'CONTENT'"> Q_CONTENT like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == 'SUBJECT,CONTENT'"> Q_SUBJECT like CONCAT('%',#{keyword},'%')
+		                                            or Q_CONTENT like CONCAT('%',#{keyword},'%')</if>
+		       <if test="option == null or option == ''">1=1</if>
+	</select>
+
+	<select id="detail" resultType="com.test.test1.board.qna.dto.QnaDto">
+		select QUESTION_ID, ID, Q_SUBJECT, Q_CONTENT, ANSWER, A_CREATE_DATE
+		 from QNA
+		where QUESTION_ID = #{question_id}
+	</select>
+
+	<update id="modify">
+		update QNA
+		   set Q_CONTENT=#{q_content}
+		 where QUESTION_ID=#{question_id}
+	</update>
+	
+	<delete id="delete">
+		delete from QNA
+		 where QUESTION_ID=#{question_id}
+	</delete>
+	
+	<delete id="deletes">
+		delete from QNA
+		 where QUESTION_ID IN
+		 <foreach collection="list" item="id" index="index" open="(" separator="," close=")" >${id}</foreach>
+	</delete>
+	
+	<select id="passCheck" resultType="String">
+		select PASSWORD
+		  from QNA
+		 where QUESTION_ID=#{question_id}
+	</select>
+	
+	<update id="answerCreate">
+		update QNA
+		   set ANSWER=#{answer}, A_CREATE_DATE=now()
+		 where QUESTION_ID=#{question_id}
+	</update>
+	
+	<select id="answerGet" resultType="String">
+		select ANSWER
+		  from QNA
+		 where QUESTION_ID=#{question_id}
+	</select>
+
+	
+</mapper>

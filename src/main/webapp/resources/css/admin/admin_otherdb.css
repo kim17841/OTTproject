@@ -1,0 +1,15 @@
+.dbDiv{
+	margin : 20px;
+}
+.container-fluid{
+	display : flex;
+}
+
+table{
+	text-align : center;
+}
+
+th, td{
+	min-width : 200px;
+	min-height : 100px;
+}

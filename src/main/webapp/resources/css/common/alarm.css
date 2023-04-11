@@ -1,0 +1,63 @@
+/* 알람창 - 02.23 장재호 */
+:root {
+    --bg: #24292D;
+    --btn_bg: #e1555a;
+    --btn_hover_bg: #e56b6f;
+    --main-text-color: #CCCCCC;
+    --sub-text-color: #FFCC00;
+    --error-text-color: #F82F62;
+    --large-text-size: 25px;
+    --medium-text-size: 17px;
+    --small-text-size: 13px;
+    --logo-color:#FFCC00;
+}
+
+@keyframes vibration {
+  0% {
+    transform: rotate(0deg);
+    color : var(--btn_bg);
+  }
+  
+  50%{
+    transform: rotate(180deg);
+    color : white;
+  }
+  
+  100% {
+    transform: rotate(359deg);
+    color : var(--btn_bg);
+  }
+}
+
+#alarmDiv{
+	margin-right : 20px;
+	margin-top : 25%;
+	text-align : right;
+	visibility : hidden;
+}
+
+#alarmDiv #alarmI{
+	cursor : pointer;
+	font-size : 30px;
+	color : white;
+	animation: vibration .2s infinite;
+	will-change: transform;	
+	margin-bottom : 10px;
+}
+	
+#alarm_Area{
+	font-size : 14px;
+	background-color : white;
+	visibility : hidden;
+}
+
+#alarm_Area .alarm_Text{
+	padding : 5px;
+	background-color : #25252b;
+	border : 1px solid black;
+	color : white;
+}
+
+.visible{
+	visibility : visible !important;
+}
