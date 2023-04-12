@@ -42,6 +42,9 @@
 ![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
 
 ### 4.2. 로그인 기능 구현
+
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
+
 <details>
 <summary> <b>기능 설명</b> </summary>
 
