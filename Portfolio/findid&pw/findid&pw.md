@@ -1,5 +1,5 @@
 
-### 4.3. 아이디/비밀번호 찾기 기능 구현
+### 아이디/비밀번호 찾기 기능 구현
 
 ![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/id%26pw.jpg?raw=true)
 ![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/changePw.jpg?raw=true)
