@@ -1,4 +1,9 @@
 ### 내 프로필 업로드 기능
+
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/profile.jpg?raw=true)
+
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/nav.jpg?raw=true)
+
 <details>
 <summary> <b>기능 설명</b> </summary>
 
