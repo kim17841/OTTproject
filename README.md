@@ -39,7 +39,7 @@
 
 ### 4.1. 전체 흐름
 
-![mvc](https://github.com/WonJae0914/secondProject/blob/main/portflio/img/MVC%EC%A0%84%EC%B2%B4%ED%9D%90%EB%A6%84.png?raw=true)
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
 
 ### 4.2. 로그인 기능 구현
 <details>
