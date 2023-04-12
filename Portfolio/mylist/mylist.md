@@ -1,5 +1,8 @@
 	   
-### 4.4. 내 보관함 기능
+### 내 보관함 기능
+
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/mylist.jpg?raw=true)
+
 <details>
 <summary> <b>기능 설명</b> </summary>
 
