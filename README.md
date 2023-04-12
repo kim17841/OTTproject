@@ -43,7 +43,7 @@
 
 ### 4.2. 로그인 기능 구현
 
-![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/login.jpg?raw=true)
 
 <details>
 <summary> <b>기능 설명</b> </summary>
@@ -401,8 +401,8 @@ public String login(UserDto userDto) {
 
 ### 4.3. 아이디/비밀번호 찾기 기능 구현
 
-![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
-![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/id%26pw.jpg?raw=true)
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/changePw.jpg?raw=true)
 
 <details>
 <summary> <b>기능 설명</b> </summary>
@@ -1288,7 +1288,7 @@ public void changepw(UserDto dto) {
 	   
 ### 4.4. 내 보관함 기능
 
-![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/mylist.jpg?raw=true)
 
 <details>
 <summary> <b>기능 설명</b> </summary>
@@ -1821,8 +1821,8 @@ public class RentalDao {
 	
 ### 4.5. 내 프로필 업로드 기능
 
-![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
-![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/MVC%ED%8C%A8%ED%84%B4.jpg?raw=true)
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/profile.jpg?raw=true)
+![mvc](https://github.com/kim17841/OTTproject/blob/main/Portfolio/nav.jpg?raw=true)
 
 <details>
 <summary> <b>기능 설명</b> </summary>
