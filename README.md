@@ -1,4 +1,4 @@
-# 💡 OTT 플랫폼 서비스
+# 💡 OTT 플랫폼 서비스(GOOTTFLEX)
 
 
 
